@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from google import genai
+from typing import Optional
 
 app = FastAPI()
 
@@ -25,6 +26,7 @@ client = genai.Client(api_key=api_key)
 class InterventionRequest(BaseModel):
     paragraph_text: str
     arm: str
+    struggle_type: Optional[str] = "general"
 
 # Handle the pre-flight check requests sent by browsers
 @app.options("/generate-intervention")
@@ -43,17 +45,29 @@ async def generate_intervention(request: InterventionRequest):
     if request.arm not in strategies:
         raise HTTPException(status_code=400, detail="Invalid intervention strategy")
 
+    # 🚀 NEW DIAGNOSTIC LAYER: Map behavioral metrics directly to tailored pedagogical styles
+    struggle_reason = request.struggle_type
+    if struggle_reason == "backtrack":
+        diagnostic_instruction = "Diagnostic Alert: The student is frequently backtracking horizontally. Focus heavily on clearing up localized vocabulary confusion, syntactical loops, or complex phrasal idioms."
+    elif struggle_reason == "reread":
+        diagnostic_instruction = "Diagnostic Alert: The student just scrolled back up to reread the whole block. Provide a macro-level overview or structural synthesis to fix a global comprehension lapse."
+    elif struggle_reason == "slow_reading":
+        diagnostic_instruction = "Diagnostic Alert: The student's reading speed dropped significantly below baseline WPM. Keep the explanation hyper-streamlined, breakdown complex sentences, and remove cognitive load."
+    else:
+        diagnostic_instruction = "Diagnostic Alert: General cognitive processing delay detected."
+
     prompt = f"""
     You are an expert, empathetic AI reading assistant. 
     The student is struggling to understand the following paragraph:
     {request.paragraph_text}
     
-    Task: {strategies[request.arm]}
+    User Diagnostic State: {diagnostic_instruction}
+    Task Requirement: {strategies[request.arm]}
     
     Rules: 
     - Output ONLY the direct support text. 
     - Do not add any introduction or meta-commentary.
-    - Keep it concise, helpful, and directly tailored to the reader.
+    - Keep it concise, helpful, and directly tailored to solve the specified reading behavior diagnostic state.
     """
 
     try:
