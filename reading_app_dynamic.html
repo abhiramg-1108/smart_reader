@@ -35,7 +35,6 @@
   header h1 { margin: 0 0 4px; font-size: 22px; letter-spacing: 0.02em; }
   header p { margin: 4px 0 20px; color: var(--muted); font-size: 14px; }
 
-  /* Registration Form Box Styles */
   #setup-modal {
     background: var(--bg);
     border: 1px solid var(--line);
@@ -45,11 +44,7 @@
     margin-top: 15px;
   }
 
-  #setup-modal h2 {
-    margin-top: 0;
-    font-size: 18px;
-    color: var(--ink);
-  }
+  #setup-modal h2 { margin-top: 0; font-size: 18px; color: var(--ink); }
 
   #registration-form {
     display: flex;
@@ -93,9 +88,7 @@
     font-family: inherit;
   }
 
-  #registration-form button:hover {
-    background: #944022;
-  }
+  #registration-form button:hover { background: #944022; }
 
   main {
     max-width: 680px;
@@ -103,32 +96,32 @@
     padding: 36px 24px 140px;
   }
 
-  /* Initially hide the application core workspace until profile setup is complete */
-  #experiment-container {
-    display: none;
-  }
+  #experiment-container { display: none; }
 
   .doc-title { font-size: 26px; margin-bottom: 24px; }
 
   p.reading-para {
     font-size: 19px;
     margin: 0 0 14px;
-    padding: 4px 0;
-    border-radius: 4px;
-    transition: background 0.4s ease;
+    padding: 12px 16px;
+    border-radius: 6px;
+    transition: background 0.3s ease, border-left 0.3s ease;
+    border-left: 4px solid transparent;
   }
 
-  p.reading-para.active { background: rgba(181, 83, 47, 0.05); }
+  p.reading-para.active { 
+    background: rgba(181, 83, 47, 0.04); 
+    border-left-color: var(--accent);
+  }
 
-  /* Intervention banner */
   .intervention {
     font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
     font-size: 14px;
     background: var(--accent-soft);
-    border-left: 3px solid var(--accent);
-    padding: 10px 14px;
+    border-left: 4px solid var(--accent);
+    padding: 14px 18px;
     border-radius: 4px;
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     display: none;
     animation: fade-in 0.3s ease;
   }
@@ -145,8 +138,7 @@
   }
 
   .intervention .content { color: var(--ink); line-height: 1.6; }
-
-  .intervention .actions { margin-top: 8px; }
+  .intervention .actions { margin-top: 10px; }
 
   .intervention .dismiss {
     background: none;
@@ -158,23 +150,25 @@
     cursor: pointer;
     font-family: inherit;
     margin-right: 6px;
+    transition: all 0.2s;
   }
 
-  .intervention .dismiss:hover { background: var(--accent); color: white; }
-  .intervention .dismiss.chosen { background: var(--accent); color: white; }
+  .intervention .dismiss:hover, .intervention .dismiss.chosen { 
+    background: var(--accent); 
+    color: white; 
+  }
 
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(-4px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Quick-check block after each paragraph */
   .quick-check {
     font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 6px;
-    padding: 14px 16px;
+    padding: 16px 20px;
     margin: 0 0 36px;
   }
 
@@ -186,12 +180,12 @@
     margin-bottom: 10px;
   }
 
-  .scale-row { margin-bottom: 12px; }
-  .scale-row .scale-label { display: block; font-size: 13px; margin-bottom: 6px; }
+  .scale-row { margin-bottom: 16px; }
+  .scale-label { display: block; font-size: 13px; margin-bottom: 6px; }
   .scale { display: flex; gap: 6px; max-width: 320px; }
-  .scale #setup-modal label, .scale label {
+  .scale label {
     flex: 1; text-align: center; border: 1px solid var(--line);
-    border-radius: 4px; padding: 5px 0; font-size: 13px; cursor: pointer;
+    border-radius: 4px; padding: 6px 0; font-size: 13px; cursor: pointer; background: var(--panel);
   }
   .scale input { display: none; }
   .scale label:has(input:checked) { background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -207,31 +201,31 @@
 
   .quiz-row .q-text { font-size: 13px; font-weight: bold; margin-bottom: 6px; }
   .quiz-options label {
-    display: block; padding: 5px 10px; border: 1px solid var(--line);
-    border-radius: 4px; margin-bottom: 5px; font-size: 13px; cursor: pointer;
+    display: block; padding: 6px 12px; border: 1px solid var(--line);
+    border-radius: 4px; margin-bottom: 6px; font-size: 13px; cursor: pointer; background: var(--panel);
   }
   .quiz-options label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
 
-  /* Status bar */
   #status-panel {
     position: fixed; bottom: 0; left: 0; right: 0;
     background: var(--ink); color: #fff;
     font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
-    font-size: 12px; padding: 10px 20px;
-    display: flex; gap: 24px; align-items: center; flex-wrap: wrap; z-index: 50;
+    font-size: 12px; padding: 12px 24px;
+    display: flex; gap: 32px; align-items: center; flex-wrap: wrap; z-index: 50;
+    border-top: 2px solid var(--accent);
   }
   #status-panel .stat { display: flex; flex-direction: column; }
   #status-panel .stat span:first-child { color: #b9b5ab; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
-  #status-panel .stat span:last-child { font-size: 14px; font-weight: bold; }
+  #status-panel .stat span:last-child { font-size: 15px; font-weight: bold; color: #fff; }
   #status-panel button {
     margin-left: auto; background: var(--accent); color: #fff; border: none;
-    padding: 8px 16px; border-radius: 4px; font-size: 13px; cursor: pointer; font-family: inherit;
+    padding: 8px 18px; border-radius: 4px; font-size: 13px; cursor: pointer; font-family: inherit;
+    font-weight: bold;
   }
-  #status-panel button:disabled { opacity: 0.5; cursor: not-allowed; }
+  #status-panel button:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* Finish overlay */
   #finish-overlay {
-    position: fixed; inset: 0; background: rgba(43,42,40,0.55);
+    position: fixed; inset: 0; background: rgba(43,42,40,0.65);
     display: none; align-items: center; justify-content: center; z-index: 100;
     font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
   }
@@ -240,7 +234,7 @@
   .panel h2 { margin-top: 0; font-family: Georgia, serif; }
   #download-link a {
     display: inline-block; margin-top: 14px; background: var(--accent); color: #fff;
-    padding: 10px 20px; border-radius: 4px; text-decoration: none; font-size: 14px;
+    padding: 10px 20px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold;
   }
 </style>
 </head>
@@ -258,12 +252,10 @@
           <label for="participant-id">Participant ID (e.g., P01):</label>
           <input type="text" id="participant-id" required placeholder="Enter any ID">
         </div>
-
         <div class="form-group">
           <label for="age">Age:</label>
           <input type="number" id="age" min="15" max="99" required placeholder="e.g., 20">
         </div>
-
         <div class="form-group">
           <label for="gender">Gender:</label>
           <select id="gender" required>
@@ -273,7 +265,6 @@
               <option value="Other">Other</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="study-details">Branch / Major / Course:</label>
           <select id="study-details" required>
@@ -284,7 +275,6 @@
               <option value="Other">Other</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="region">Region / State:</label>
           <select id="region" required>
@@ -298,9 +288,8 @@
               <option value="Other">Other</option>
           </select>
         </div>
-
         <div class="form-group">
-          <label for="primary-language">Primary Language(Mother Tongue):</label>
+          <label for="primary-language">Primary Language (Mother Tongue):</label>
           <select id="primary-language" required>
               <option value="">--Select Language--</option>
               <option value="English">English</option>
@@ -319,6 +308,10 @@
 
 <div id="experiment-container">
   <main>
+    <div style="background: #eef2f7; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 4px; margin-bottom: 24px; font-family: 'Trebuchet MS', sans-serif; font-size: 14px; color: #1e3a8a;">
+      💡 <strong>Important Reading Rule:</strong> Please use your mouse cursor as a visual pointer/guide to track words across the screen as you read. This lets our background adapter accurately monitor your reading flow!
+    </div>
+
     <div class="doc-title">Modern AI Paradigms: Core Concepts, Language Models, and Reinforcement Learning</div>
     <div id="reading-container"></div>
   </main>
@@ -342,10 +335,6 @@
 
 <script>
 (function () {
-  // =====================================================================
-  // CONTENT — Paragraphs and quiz questions. 
-  // Interventions are generated dynamically by FastAPI now!
-  // =====================================================================
   const PARAGRAPHS = [
     {
       text: "Artificial Intelligence (AI) has a rich history and a rapidly expanding footprint. The term 'Artificial Intelligence' itself was first mentioned as early as 1956! Today, AI can beat world chess champions, Go champions, and even video game champions. Beyond gaming, there is some AI that can tell stories, create music, or even paint. According to industry experts, artificial intelligence will be incorporated into nearly all work and industries by the year 2030.",
@@ -403,23 +392,17 @@
     }
   ];
 
-  // =====================================================================
-  // CONFIG
-  // =====================================================================
   const IDLE_THRESHOLD_MS = 1500;
   const STRUGGLE_THRESHOLD = 0.35;
-  const SCROLL_REREAD_PX = 50;
-  const BACKTRACK_PX = 30;
-  const FEATURE_UPDATE_MS = 1000;
+  const FEATURE_UPDATE_MS = 3000;
+  
+  // Adjusted thresholds for fine-grained pointer data
+  const BACKTRACK_PX = 25; 
+  const VERTICAL_REREAD_PX = 40; 
 
   const ARMS = ["control", "A_definition", "B_summary", "C_rephrase", "D_analogy"];
-  function pickArm() {
-    return ARMS[Math.floor(Math.random() * ARMS.length)];
-  }
+  function pickArm() { return ARMS[Math.floor(Math.random() * ARMS.length)]; }
 
-  // =====================================================================
-  // BUILD DOM
-  // =====================================================================
   const container = document.getElementById("reading-container");
   PARAGRAPHS.forEach((p, i) => {
     const para = document.createElement("p");
@@ -467,51 +450,32 @@
     container.appendChild(check);
   });
 
-  // =====================================================================
-  // STATE
-  // =====================================================================
   const rawEvents = [];
   const paraStats = {};
   const interventionLog = {}; 
   
   let sessionId = null;
   let participantDemographics = {};
+  let isReadingStarted = false; // 🚀 FIX: Keeps the tracking engine paused until the first paragraph focus!
 
   const paragraphs = Array.from(document.querySelectorAll(".reading-para"));
   paragraphs.forEach((el, i) => {
     paraStats[i] = {
       wordCount: parseInt(el.dataset.words, 10),
       dwellMs: 0,
-      lastEnterTime: null,
       rereadCount: 0,
       backtrackCount: 0,
       cursorStops: 0,
       mouseSpeeds: [],
+      struggleAccumulator: 0 // 🚀 Prevents hair-trigger AI activations
     };
   });
 
   let mouseX = 0, mouseY = 0, lastMouseTime = Date.now();
+  let maxYInPara = 0; // 🚀 Tracks deepest pointer reach for static rereads
   let idleTimer = null;
   let currentParaId = null;
-  let lastScrollY = window.scrollY;
-
-  // =====================================================================
-  // POSITION MAPPING
-  // =====================================================================
-  function getParaBounds(i) {
-    const el = paragraphs[i];
-    const top = el.offsetTop;
-    return { top, bottom: top + el.offsetHeight };
-  }
-
-  function getCurrentParagraph() {
-    const viewportMid = window.scrollY + window.innerHeight / 2;
-    for (let i = 0; i < paragraphs.length; i++) {
-      const { top, bottom } = getParaBounds(i);
-      if (viewportMid >= top && viewportMid < bottom) return i;
-    }
-    return null;
-  }
+  let lastTimeTick = Date.now();
 
   function logEvent(type, extra) {
     rawEvents.push(Object.assign({
@@ -522,25 +486,26 @@
       scroll_y: window.scrollY,
     }, extra));
   }
-
-  function setActiveParagraph(newId) {
-    if (newId === currentParaId) return;
-    if (currentParaId !== null && paraStats[currentParaId].lastEnterTime !== null) {
-      const stats = paraStats[currentParaId];
-      stats.dwellMs += Date.now() - stats.lastEnterTime;
-      stats.lastEnterTime = null;
-      paragraphs[currentParaId].classList.remove("active");
+    function getCurrentParagraph() {
+    const viewportMid = window.scrollY + (window.innerHeight / 2);
+    for (let i = 0; i < paragraphs.length; i++) {
+      const el = paragraphs[i];
+      const top = el.offsetTop;
+      const bottom = top + el.offsetHeight;
+      if (viewportMid >= top && viewportMid < bottom) {
+        return i;
+      }
     }
-    currentParaId = newId;
-    if (currentParaId !== null) {
-      paraStats[currentParaId].lastEnterTime = Date.now();
-      paragraphs[currentParaId].classList.add("active");
+    return null;
+  }
+  // 🚀 FIX: Dwell time runs continuously based on absolute tracking context clock ticks
+ // 🚀 FIX: Decoupled from asynchronous high-frequency mouse movements
+  function tickDwellTime() {
+    if (sessionId && currentParaId !== null) {
+      paraStats[currentParaId].dwellMs += 1000;
     }
   }
 
-  // =====================================================================
-  // SESSION CONTROLS
-  // =====================================================================
   window.startSession = function(event) {
     event.preventDefault(); 
     
@@ -556,91 +521,168 @@
     document.getElementById('setup-modal').style.display = 'none';
     document.getElementById('experiment-container').style.display = 'block';
 
-    setActiveParagraph(getCurrentParagraph() || 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    lastTimeTick = Date.now();
     logEvent("session_started", participantDemographics);
   };
 
   document.getElementById("registration-form").addEventListener("submit", window.startSession);
 
-  // =====================================================================
-  // TRACKING LISTENERS
-  // =====================================================================
-  document.addEventListener("mousemove", (e) => {
+  // 🚀 FIX: Track focus target dynamically using active cursor element coordinates
+  // 🚀 COMPLETELY OPTIMIZED TELEMETRY MOTOR
+ // 🚀 COMPLETELY FIXED MOUSEMOVE TELEMETRY CORE
+document.addEventListener("mousemove", (e) => {
     if (!sessionId) return;
+
     const now = Date.now();
     const dt = (now - lastMouseTime) / 1000;
     const dx = e.clientX - mouseX;
     const dy = e.clientY - mouseY;
 
-    if (currentParaId !== null && dt > 0) {
-      paraStats[currentParaId].mouseSpeeds.push(Math.sqrt(dx*dx + dy*dy) / dt);
-      if (dx < -BACKTRACK_PX) paraStats[currentParaId].backtrackCount++;
+    const hoveredElement = document.elementFromPoint(e.clientX, e.clientY);
+    const closestPara = hoveredElement ? hoveredElement.closest(".reading-para") : null;
+    
+    if (closestPara) {
+      const pId = parseInt(closestPara.id.split("-")[1], 10);
+      
+      // Wake up the engine on the first real paragraph focus
+      if (!isReadingStarted && pId === 0) {
+        isReadingStarted = true;
+        lastTimeTick = Date.now();
+      }
+
+      if (currentParaId !== pId) {
+        if (currentParaId !== null && paragraphs[currentParaId]) {
+          paragraphs[currentParaId].classList.remove("active");
+        }
+        currentParaId = pId;
+        paragraphs[currentParaId].classList.add("active");
+        maxYInPara = e.pageY; 
+        
+        // 🚀 FIX: Safety check initialization directly on the array map to avoid ReferenceErrors!
+        if (!paraStats[currentParaId].hasOwnProperty('isRereadLockActive')) {
+          paraStats[currentParaId].isRereadLockActive = false;
+        } else {
+          paraStats[currentParaId].isRereadLockActive = false;
+        }
+      }
+
+      // 🚀 FIX: Declare stats immediately here, safe from reference conflicts!
+      const stats = paraStats[currentParaId];
+      if (!stats) return; // Hard guard safety net
+
+      if (dt > 0) {
+        stats.mouseSpeeds.push(Math.sqrt(dx*dx + dy*dy) / dt);
+      }
+
+      // Track horizontal backtracks cleanly
+      if (dx < -BACKTRACK_PX && Math.abs(dy) < 15) {
+        stats.backtrackCount++;
+        logEvent("backtrack_detected", { dx });
+      }
+
+      // Capture static rereads without directional multi-tick explosions
+      if (e.pageY > maxYInPara) {
+        maxYInPara = e.pageY;
+        stats.isRereadLockActive = false; 
+      } else if (maxYInPara - e.pageY > VERTICAL_REREAD_PX) {
+        if (!stats.isRereadLockActive) {
+          stats.rereadCount++; 
+          logEvent("reread_detected", { vertical_recovery: maxYInPara - e.pageY });
+          stats.isRereadLockActive = true; 
+        }
+      }
+
+    } else {
+      // 🚀 FIX: Clean up active highlights safely when moving cursor off text fields
+      if (currentParaId !== null) {
+        if (paragraphs[currentParaId]) paragraphs[currentParaId].classList.remove("active");
+        currentParaId = null; 
+      }
     }
 
-    mouseX = e.clientX; mouseY = e.clientY; lastMouseTime = now;
-    logEvent("mousemove", { mouse_x: mouseX, mouse_y: mouseY });
+    // Update tracking coordinate vectors inside the main listener scope
+    mouseX = e.clientX; 
+    mouseY = e.clientY; 
+    lastMouseTime = now;
 
     clearTimeout(idleTimer);
     idleTimer = setTimeout(() => {
-      if (currentParaId !== null) {
+      if (currentParaId !== null && paraStats[currentParaId]) {
         paraStats[currentParaId].cursorStops++;
         logEvent("idle", { mouse_x: mouseX, mouse_y: mouseY });
       }
     }, IDLE_THRESHOLD_MS);
   });
-
+  // 🚀 FIX: Let scrolling automatically update the paragraph focus if the mouse is still!
+ // 🚀 FIX: Let scrolling automatically update the paragraph focus if the mouse is still!
   document.addEventListener("scroll", () => {
     if (!sessionId) return;
+    
+
     const newScrollY = window.scrollY;
-
-    if (currentParaId !== null) {
-      const { top } = getParaBounds(currentParaId);
-      if (newScrollY < lastScrollY && (lastScrollY - newScrollY) > SCROLL_REREAD_PX && newScrollY <= top) {
-        paraStats[currentParaId].rereadCount++;
-      }
-    }
-
     lastScrollY = newScrollY;
     logEvent("scroll", { mouse_x: mouseX, mouse_y: mouseY });
 
+    // Fallback: If mouse isn't tracking a paragraph, use viewport midpoint to find it!
     const newPara = getCurrentParagraph();
-    if (newPara !== null) setActiveParagraph(newPara);
+    if (newPara !== null && currentParaId !== newPara) {
+      if (currentParaId !== null) paragraphs[currentParaId].classList.remove("active");
+      currentParaId = newPara;
+      paragraphs[currentParaId].classList.add("active");
+      
+      // 🚀 Reset the pointer tracking metric bounds ceiling baseline dynamically
+      maxYInPara = window.scrollY + (window.innerHeight / 2); 
+    }
   });
 
-  document.addEventListener("visibilitychange", () => {
-    if (!sessionId) return;
-    logEvent(document.hidden ? "tab_hidden" : "tab_visible", {});
-  });
-
-  // =====================================================================
-  // STRUGGLE MATH + SHOW INTERVENTIONS (FASTAPI LIVE VERSION)
-  // =====================================================================
-  function avg(arr) { return arr.length ? arr.reduce((a,b) => a+b, 0) / arr.length : 0; }
-
+  // 🚀 FEATURE ENGINEERING MATRIX
   function computeFeatures(paraId) {
     const s = paraStats[paraId];
-    const dwellSec = (s.dwellMs + (s.lastEnterTime ? Date.now() - s.lastEnterTime : 0)) / 1000;
+    const dwellSec = s.dwellMs / 1000;
     const wpm = dwellSec > 0 ? (s.wordCount / dwellSec) * 60 : 999;
 
-    const dwellTerm = Math.min(dwellSec / 40, 1);
+    const dwellTerm = Math.min(dwellSec / 45, 1);
     const rereadTerm = Math.min(s.rereadCount / 3, 1);
     const backtrackTerm = Math.min(s.backtrackCount / 5, 1);
     const stopTerm = Math.min(s.cursorStops / 4, 1);
-    const speedTerm = Math.max(0, 1 - wpm / 180);
+    const speedTerm = Math.max(0, 1 - wpm / 160);
 
     const score = 0.30*dwellTerm + 0.25*rereadTerm + 0.20*backtrackTerm + 0.15*stopTerm + 0.10*speedTerm;
     return { score: Math.min(score, 1), dwellSec, wpm };
   }
-
+// 🚀 FIX: Smart multi-metric evaluation to break the reread monopoly
   function classifyStruggleType(paraId) {
     const s = paraStats[paraId];
-    if (s.rereadCount >= 1) return "reread";
-    if (s.backtrackCount >= 2) return "backtrack";
-    if (s.cursorStops >= 1) return "slow_reading";
-    return "none";
+    if (!s) return "general";
+    
+    // Normalized intensities: Lower denominators mean the metric triggers faster!
+    const rereadIntensity = s.rereadCount / 1.5;     
+    const backtrackIntensity = s.backtrackCount / 1.0; // 🚀 Boosted: 1 single backtrack will trigger it!
+    const slowIntensity = s.cursorStops / 1.5;         // 🚀 Boosted: 2 cursor stops will trigger it!
+
+    // Sheer dwell time fallback processing threshold check
+    if (s.rereadCount === 0 && s.backtrackCount === 0 && s.cursorStops < 2) {
+      if (s.dwellMs > 20000) return "slow_reading";
+      return "general";
+    }
+
+    const maxIntensity = Math.max(rereadIntensity, backtrackIntensity, slowIntensity);
+
+    if (maxIntensity === backtrackIntensity && s.backtrackCount >= 1) {
+      return "backtrack"; // Map directly to Arm A
+    }
+    if (maxIntensity === slowIntensity && s.cursorStops >= 2) {
+      return "slow_reading"; // Map directly to Arm C
+    }
+    if (s.rereadCount >= 1) {
+      return "reread"; // Map directly to Arm B
+    }
+    
+    return "general"; // Map directly to Arm D
   }
 
-  // Live Async FastAPI Hook
   async function showIntervention(paraId, arm) {
     if (arm === "control") return; 
     const el = document.getElementById("intervention-" + paraId);
@@ -653,7 +695,7 @@
     };
 
     el.querySelector(".label").textContent = labelMapping[arm] || "AI Hint";
-    el.querySelector(".content").textContent = "AI is thinking..."; 
+    el.querySelector(".content").textContent = "AI is evaluating telemetry context..."; 
     el.classList.add("show");
 
     try {
@@ -662,7 +704,8 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           paragraph_text: PARAGRAPHS[paraId].text,
-          arm: arm
+          arm: arm,
+          struggle_type: classifyStruggleType(paraId)
         })
       });
 
@@ -690,8 +733,17 @@
     });
   });
 
+// 🚀 CORE INTEGRATION METRICS REFRESH LOOP
   setInterval(() => {
+    // Basic structural validation check
     if (!sessionId || currentParaId === null) return;
+    
+    // 🚀 FIX: Keeps time calculation running perfectly on rhythm!
+    tickDwellTime(); 
+
+    // 🚀 FIX: Hold the rest of the struggle math evaluation back until user has hovered over Paragraph 1
+    if (!isReadingStarted) return;
+
     const { score, dwellSec } = computeFeatures(currentParaId);
 
     document.getElementById("stat-para").textContent = "P" + (currentParaId + 1);
@@ -699,16 +751,38 @@
     document.getElementById("stat-reread").textContent = paraStats[currentParaId].rereadCount;
     document.getElementById("stat-struggle").textContent = score.toFixed(2);
 
+    // Verify if struggle threshold is crossed and no intervention has been deployed yet
     if (score >= STRUGGLE_THRESHOLD && !interventionLog[currentParaId]) {
-      const arm = pickArm();
-      const struggleType = classifyStruggleType(currentParaId);
-      interventionLog[currentParaId] = { arm: arm, accepted: null, struggle_type: struggleType };
-      showIntervention(currentParaId, arm);
-      logEvent("intervention_assigned", { arm: arm, struggle_type: struggleType });
+      paraStats[currentParaId].struggleAccumulator++;
+      
+      if (paraStats[currentParaId].struggleAccumulator >= 2) {
+        // Get the precise struggle classification dynamically
+        const struggleType = classifyStruggleType(currentParaId);
+        
+        // 🚀 DETOUR RANDOMIZATION: Deterministically link struggle_type straight to the designated Arm!
+        let arm;
+        if (struggleType === "backtrack") {
+          arm = "A_definition";
+        } else if (struggleType === "reread") {
+          arm = "B_summary";
+        } else if (struggleType === "slow_reading") {
+          arm = "C_rephrase";
+        } else {
+          arm = "D_analogy"; // Fallback for general baseline tracking delays
+        }
+
+        // Lock the mapped relationship into your data logs
+        interventionLog[currentParaId] = { arm: arm, accepted: null, struggle_type: struggleType };
+        
+        // Fire the network payload down the line to Render
+        showIntervention(currentParaId, arm);
+        logEvent("intervention_assigned", { arm: arm, struggle_type: struggleType });
+      }
+    } else if (currentParaId !== null) {
+      paraStats[currentParaId].struggleAccumulator = 0; // Reset validation score
     }
   }, FEATURE_UPDATE_MS);
 
-  // Dynamic global completeness tracking validator
   document.addEventListener("change", () => {
     let allAnswered = true;
     for (let i = 0; i < PARAGRAPHS.length; i++) {
@@ -722,9 +796,6 @@
     document.getElementById("finish-btn").disabled = !allAnswered;
   });
 
-  // =====================================================================
-  // DATA DOWNLOAD OUTPUT MAPPING
-  // =====================================================================
   document.getElementById("finish-btn").addEventListener("click", () => {
     for (let i = 0; i < PARAGRAPHS.length; i++) {
       if (interventionLog[i] && interventionLog[i].accepted === null && interventionLog[i].arm !== "control") {
@@ -734,11 +805,14 @@
       }
     }
 
-    setActiveParagraph(null);
+    tickDwellTime();
+    currentParaId = null;
 
     const paragraphEvents = [];
     const quizResults = [];
     const interventionRows = [];
+
+    function avg(arr) { return arr.length ? arr.reduce((a,b) => a+b, 0) / arr.length : 0; }
 
     paragraphs.forEach((el, i) => {
       const features = computeFeatures(i);
@@ -774,7 +848,6 @@
       });
 
       if (interventionLog[i]) {
-        // Dynamic version grabs the content currently rendered inside the banner viewport
         const loadedText = document.getElementById("intervention-" + i).querySelector(".content").textContent;
         interventionRows.push({
           session_id: sessionId,
